@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-center">Logistics PT Habibirrohim</h1>
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table class="min-w-full leading-normal">
+                <thead>
+                    <tr>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama Barang</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kategori</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Berat</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Harga</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama Gudang</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Lokasi Gudang</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kapasitas Gudang</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal Pengiriman</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tujuan Pengiriman</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Jumlah Barang</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% logistik.forEach(item => { %>
+                    <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.id_logistik %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.nama_barang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.kategori_barang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.berat %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.harga %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.nama_gudang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.lokasi_gudang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.kapasitas_gudang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.tanggal_pengiriman %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.tujuan_pengiriman %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.jumlah_barang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <a href="/logistik/edit/<%= item.id_logistik %>" class="text-blue-600 hover:text-blue-900">Edit</a>
+                            <a href="/logistik/delete/<%= item.id_logistik %>" class="ml-2 text-red-600 hover:text-red-900">Hapus</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-4">Tambah Logistics</h2>
+        <form action="/logistik/add" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="nama_barang">Nama Barang:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="nama_barang" name="nama_barang" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="kategori_barang">Kategori Barang:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="kategori_barang" name="kategori_barang">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="berat">Berat:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="berat" name="berat" step="0.01">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="harga">Harga:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="harga" name="harga" step="0.01">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="nama_gudang">Nama Gudang:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="nama_gudang" name="nama_gudang">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="lokasi_gudang">Lokasi Gudang:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="lokasi_gudang" name="lokasi_gudang">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="kapasitas_gudang">Kapasitas Gudang:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="kapasitas_gudang" name="kapasitas_gudang">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="tanggal_pengiriman">Tanggal Pengiriman:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" id="tanggal_pengiriman" name="tanggal_pengiriman">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="tujuan_pengiriman">Tujuan Pengiriman:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="tujuan_pengiriman" name="tujuan_pengiriman">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="jumlah_barang">Jumlah Barang:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="jumlah_barang" name="jumlah_barang">
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Tambah
+                </button>
+            </div>
+        </form>
+
+        <a href="/auth/logout" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+            Logout
+        </a>
+    </div>
+</body>
+<script>
+    function confirmTambah() {
+      return confirm("Apakah Anda Yakin Akan Menambahkan Data ini ?");
+    }
+  
+    function confirmUpdate() {
+      return confirm("Data Berhasil Diupdate");
+    }
+  
+    function confirmHapus() {
+      return confirm("Apakah Anda Yakin Akan Menghapus Data ini ?");
+    }
+  </script>
+</html>

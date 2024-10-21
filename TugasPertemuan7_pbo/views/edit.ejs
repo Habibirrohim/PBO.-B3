@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Data Logistik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div class="md:flex">
+            <div class="p-8">
+                <h1 class="text-2xl font-bold mb-6">Edit Data Logistik</h1>
+                <form action="/logistik/update/<%= logistik.id_logistik %>" method="POST">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="nama_barang">Nama Barang:</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="nama_barang" name="nama_barang" value="<%= logistik.nama_barang %>" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="kategori_barang">Kategori Barang:</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="kategori_barang" name="kategori_barang" value="<%= logistik.kategori_barang %>">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="berat">Berat:</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="berat" name="berat" step="0.01" value="<%= logistik.berat %>">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="harga">Harga:</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="harga" name="harga" step="0.01" value="<%= logistik.harga %>">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="nama_gudang">Nama Gudang:</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="nama_gudang" name="nama_gudang" value="<%= logistik.nama_gudang %>">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="lokasi_gudang">Lokasi Gudang:</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="lokasi_gudang" name="lokasi_gudang" value="<%= logistik.lokasi_gudang %>">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="kapasitas_gudang">Kapasitas Gudang:</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="kapasitas_gudang" name="kapasitas_gudang" value="<%= logistik.kapasitas_gudang %>">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="tanggal_pengiriman">Tanggal Pengiriman:</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" id="tanggal_pengiriman" name="tanggal_pengiriman" value="<%= logistik.tanggal_pengiriman %>">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="tujuan_pengiriman">Tujuan Pengiriman:</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="tujuan_pengiriman" name="tujuan_pengiriman" value="<%= logistik.tujuan_pengiriman %>">
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="jumlah_barang">Jumlah Barang:</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="jumlah_barang" name="jumlah_barang" value="<%= logistik.jumlah_barang %>">
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            Simpan
+                        </button>
+                        <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="/logistik">
+                            Kembali
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function confirmEdit() {
+        return confirm("Apakah Anda yakin ingin menyimpan perubahan?");
+    }
+</script>
+</html>
