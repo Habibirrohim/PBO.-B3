@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-center">Samudera Sejahtera - Data Nelayan Hasil Tangkapan</h1>
+        <a href="/auth/logout" class="inline-block align-baseline font-bold text-lg text-blue-500 hover:text-blue-800">
+            Logout
+        </a>
+        <div class="mb-4">
+            <h2 class="text-2xl font-bold mt-12 mb-4">Statistik Data Nelayan</h2>
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <div class="bg-white border rounded shadow p-4">
+                        <div class="flex justify-between mb-2">
+                            <div class="text-lg font-bold">Jumlah Data</div>
+                            <div class="text-lg font-bold"><%= logistik.length %></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <div class="bg-white border rounded shadow p-4">
+                        <div class="flex justify-between mb-2">
+                            <div class="text-lg font-bold">Total Berat (kg)</div>
+                            <div class="text-lg font-bold"><%= logistik.reduce((acc, item) => acc + parseFloat(item.berat), 0).toFixed(2) %></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 xl:w-1/3 p-3">
+                    <div class="bg-white border rounded shadow p-4">
+                        <div class="flex justify-between mb-2">
+                            <div class="text-lg font-bold">Total Harga</div>
+                            <div class="text-lg font-bold"><%= logistik.reduce((acc, item) => acc + parseFloat(item.harga), 0).toFixed(2) %></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+            <table class="min-w-full leading-normal">
+                <thead>
+                    <tr>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">No</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama Ikan</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Kategori</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Berat</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Harga</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama Kapal</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Lokasi Penangkapan</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal Penangkapan</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Jumlah Tangkapan</th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% logistik.forEach((item, index) => { %>
+                    <tr>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= index + 1 %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.id_logistik %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.nama_barang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.kategori_barang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.berat %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.harga %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.nama_gudang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.lokasi_gudang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.tanggal_pengiriman %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm"><%= item.jumlah_barang %></td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <a href="/logistik/edit/<%= item.id_logistik %>" 
+                                class="text-blue-600 hover:text-blue-900"
+                                onclick="return confirmEdit()">Edit</a>
+                            <a href="/logistik/delete/<%= item.id_logistik %>" 
+                                class="ml-2 text-red-600 hover:text-red-900"
+                                onclick="return confirmDelete()">Hapus</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-4">Tambah Data Nelayan</h2>
+        <form action="/logistik/add" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onsubmit="return handleSubmit(event)">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="nama_barang">Nama Ikan:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="nama_barang" name="nama_barang" required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="kategori_barang">Kategori Ikan:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="kategori_barang" name="kategori_barang">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="berat">Berat (kg):</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="berat" name="berat" step="0.01">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="harga">Harga:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="harga" name="harga" step="0.01">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="nama_gudang">Nama Kapal:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="nama_gudang" name="nama_gudang">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="lokasi_gudang">Lokasi Penangkapan:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="lokasi_gudang" name="lokasi_gudang">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="tanggal_pengiriman">Tanggal Penangkapan:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" id="tanggal_pengiriman" name="tanggal_pengiriman">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="jumlah_barang">Jumlah Tangkapan:</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="jumlah_barang" name="jumlah_barang">
+            </div>
+
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Tambah
+                </button>
+           
